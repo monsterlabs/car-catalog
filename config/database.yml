@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: car-catalog
   pool: 5
-  username: car-catalog
+  username: alex
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,9 +46,9 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: car-catalog_test
+  database: car-catalog
   pool: 5
-  username: car-catalog
+  username: alex
   password:
 
 production:

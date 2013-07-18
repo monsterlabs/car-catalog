@@ -7,6 +7,8 @@ gem "carrierwave", "~> 0.9.0"
 gem "devise", "~> 3.0.0"
 gem "devise-encryptable", "~> 0.1.2"
 gem "mini_magick", "~> 3.6.0"
+gem "rails_admin", "~> 0.5.0"
+gem "turbolinks", "~> 1.3.0"
 
 group :test do
   gem "rspec-rails", "~> 2.14.0"

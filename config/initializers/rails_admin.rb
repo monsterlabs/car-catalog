@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Offer', 'User']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Offer']
+  config.included_models = ['Offer', 'Brand']
 
   # Each model configuration can alternatively:
   #   - stay here in a `config.model 'ModelName' do ... end` block
@@ -75,6 +75,12 @@ RailsAdmin.config do |config|
       field :image
       field :largeImage
       field :enabled
+    end
+  end
+
+  config.model 'Brand' do
+    list do 
+      field :name
     end
   end
   # config.model 'Offer' do

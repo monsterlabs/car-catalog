@@ -38,3 +38,10 @@ Brand.destroy_all
   puts @brand.errors.full_messages.join(', ') unless @brand.save
 end
 
+Serie.destroy_all
+@brand = Brand.where(name: 'BMW').first
+["Serie 1", "Serie 3", "Serie 4", "Serie 5", "Serie 6", "Serie 7", "Serie X", "Serie Z4", "Serie M"].each do |name|
+  @serie = Serie.new(name: name, enabled: true)
+  @serie.brand = @brand
+  puts @serie.errors.full_messages.join(', ') unless @serie.save
+end

@@ -11,7 +11,7 @@ Offer.destroy_all
 (1..6).each do |i|
   @offer = Offer.new
   @offer.title = Faker::Lorem.sentence
-  @offer.body = Faker::Lorem.sentence
+  @offer.body = Faker::Lorem.paragraph
   @offer.validUntil = Date.today + i.month
   @offer.enabled = true
   @offer.url =  Faker::Internet.http_url

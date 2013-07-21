@@ -25,10 +25,16 @@ Offer.destroy_all
 end
 
 User.destroy_all
-@user = User.new(:email => 'admin@bmw.com.mx', :password => 'qw1234..', :password_confirmation => 'qw1234..', :is_admin => true)
+@user = User.new(:email => 'admin@bmwapps.mx', :password => 'qw1234..', :password_confirmation => 'qw1234..', :is_admin => true)
 if @user.valid?
   @user.save
 else
   puts @user.errors.full_messages.join(', ')
+end
+
+Brand.destroy_all
+["BMW", "Audi", "Volvo", "Mercedes Benz"].each do |name|
+  @brand = Brand.new(name: name)
+  puts @brand.errors.full_messages.join(', ') unless @brand.save
 end
 

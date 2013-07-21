@@ -43,8 +43,14 @@ RailsAdmin.config do |config|
 
   # Now you probably need to tour the wiki a bit: https://github.com/sferik/rails_admin/wiki
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
-
-
+  config.actions do
+    dashboard
+    index
+    new
+    show
+    edit
+    delete
+  end
 
   ###  Offer  ###
 
@@ -52,9 +58,14 @@ RailsAdmin.config do |config|
     list do
       sort_by :title
       field :title
-      field :image, :carrierwave
-      field :validUntil
+      field :image, :carrierwave do
+        filterable false
+      end
+      field :validUntil do
+        filterable false
+      end
       field :enabled
+
     end
 
     edit do

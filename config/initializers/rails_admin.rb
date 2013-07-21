@@ -30,13 +30,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Offer', 'User']
 
   # Include specific models (exclude the others):
-  # config.included_models = ['Offer', 'User']
-
-  # Label methods for model instances:
-  # config.label_methods << :description # Default is [:name, :title]
-
-
-  ################  Model configuration  ################
+  config.included_models = ['Offer']
 
   # Each model configuration can alternatively:
   #   - stay here in a `config.model 'ModelName' do ... end` block
@@ -54,6 +48,35 @@ RailsAdmin.config do |config|
 
   ###  Offer  ###
 
+  config.model 'Offer' do
+    list do
+      sort_by :title
+      field :title
+      field :image, :carrierwave
+      field :validUntil
+      field :enabled
+    end
+
+    edit do
+      field :title
+      field :body
+      field :validUntil
+      field :url
+      field :image
+      field :largeImage
+      field :enabled
+    end
+
+    show do
+      field :title
+      field :body
+      field :validUntil
+      field :url
+      field :image
+      field :largeImage
+      field :enabled
+    end
+  end
   # config.model 'Offer' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your offer.rb model definition

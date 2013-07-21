@@ -4,4 +4,8 @@ class Offer < ActiveRecord::Base
 
   mount_uploader :image, OfferImageUploader
   mount_uploader :largeImage, OfferLargeImageUploader
+
+  def active_model_serializer
+    OfferSerializer
+  end
 end

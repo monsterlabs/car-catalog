@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: car-catalog
   pool: 5
-  username: car-catalog
+  username: alex
   password:

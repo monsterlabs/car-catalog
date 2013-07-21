@@ -9,6 +9,7 @@ gem "devise-encryptable", "~> 0.1.2"
 gem "mini_magick", "~> 3.6.0"
 gem "rails_admin", "~> 0.5.0"
 gem "turbolinks", "~> 1.3.0"
+gem "active_model_serializers", "~> 0.8.1"
 
 group :test do
   gem "rspec-rails", "~> 2.14.0"

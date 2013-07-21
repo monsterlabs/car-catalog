@@ -20,3 +20,7 @@ group :test do
   gem "shoulda", "~> 3.5.0"
   gem "shoulda-matchers", "~> 2.2.0"
 end
+
+group :assets do
+  gem "uglifier", "~> 2.1.2"
+end

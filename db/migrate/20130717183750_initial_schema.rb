@@ -34,7 +34,7 @@ class InitialSchema < ActiveRecord::Migration
 
   create_table "cars", force: true do |t|
     t.boolean "enabled",     default: true
-    t.string  "highlights",                 null: false
+    t.text  "highlights",                 null: false
     t.string  "image"
     t.string  "modelName",                  null: false
     t.integer "orderKey",    default: 0
@@ -69,7 +69,7 @@ class InitialSchema < ActiveRecord::Migration
   add_index "comparedcars", ["year"], name: "comparedcars_year_index", using: :btree
 
   create_table "comparedfeatures", force: true do |t|
-    t.string  "descr"
+    t.text  "descr"
     t.integer "comparative_id"
     t.integer "feature_id"
   end
@@ -78,8 +78,8 @@ class InitialSchema < ActiveRecord::Migration
   add_index "comparedfeatures", ["feature_id"], name: "comparedfeatures_feature_id_index", using: :btree
 
   create_table "features", force: true do |t|
-    t.string  "additionalInfo"
-    t.string  "descr"
+    t.text  "additionalInfo"
+    t.text  "descr"
     t.boolean "highlighted",      default: false
     t.string  "name"
     t.integer "specification_id"
@@ -130,7 +130,7 @@ class InitialSchema < ActiveRecord::Migration
   end
 
   create_table "lines", force: true do |t|
-    t.string  "descr"
+    t.text  "descr"
     t.string  "name",   null: false
     t.integer "car_id"
   end
@@ -239,7 +239,7 @@ class InitialSchema < ActiveRecord::Migration
   add_index "series", ["name"], name: "series_name_index", using: :btree
 
   create_table "specifications", force: true do |t|
-    t.string  "descr",                null: false
+    t.text  "descr",                null: false
     t.string  "image"
     t.integer "car_id"
     t.integer "specificationType_id"

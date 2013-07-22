@@ -45,3 +45,13 @@ Serie.destroy_all
   @serie.brand = @brand
   puts @serie.errors.full_messages.join(', ') unless @serie.save
 end
+
+CarModel.destroy_all
+Serie.all.each do |serie|
+  rand(1..8).times do
+    @car_model = CarModel.new(name: Faker::Product.model + ' ' + Faker::Lorem.words(rand(1..2)).join(' '), enabled: true)
+    @car_model.serie = serie
+    puts @car_model.errors.full_messages.join(', ') unless @car_model.save
+  end
+end
+

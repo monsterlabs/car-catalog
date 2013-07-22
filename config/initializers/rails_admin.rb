@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Offer', 'User']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Offer', 'Brand', 'Serie', 'CarModel']
+  config.included_models = ['Offer', 'Brand', 'Serie', 'CarModel', 'Car']
 
   # Each model configuration can alternatively:
   #   - stay here in a `config.model 'ModelName' do ... end` block
@@ -52,7 +52,7 @@ RailsAdmin.config do |config|
     delete
   end
 
-  ###  Offer  ###
+  config.label_methods << :to_s
 
   config.model 'Offer' do
     list do
@@ -124,6 +124,39 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Car' do
+    list do
+      field :modelName do
+        queryable false
+        filterable false
+      end
+      field :year
+      field :car_model
+      field :image, :carrierwave do
+        filterable false
+      end
+      field :enabled
+    end
+
+    edit do
+      field :modelName
+      field :year
+      field :highlights
+      field :car_model
+      field :image
+      field :enabled
+    end
+
+    show do
+      field :modelName
+      field :year
+      field :highlights
+      field :car_model
+      field :image
+      field :enabled
+    end
+
+  end
   # config.model 'Offer' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your offer.rb model definition

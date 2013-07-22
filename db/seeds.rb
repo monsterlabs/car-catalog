@@ -83,3 +83,46 @@ Car.all.each do |car|
     puts @specification.errors.full_messages.join(', ') unless @specification.save
   end
 end
+
+[ComparedFeature, Comparative, ComparedCar, Feature].each do |klass_name|
+  klass_name.destroy_all
+end
+@brands = Brand.where("name != 'BMW'").all
+Car.all.each do |car|
+
+  @compared_cars = []
+  rand(1..@brands.size).times do
+    @compared_car = ComparedCar.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, year: 2013)
+    @compared_car.brand = @brands.sample
+    if @compared_car.save
+      @compared_cars.push @compared_car
+    else
+      puts @compared_car.errors.full_messages.join(', ')
+    end
+  end
+
+  car.specifications.each do |specification|
+
+    @compared_cars.each do |compared_car|
+      @comparative = Comparative.new
+      @comparative.specification = specification
+      @comparative.compared_car = compared_car
+      puts @comparative.errors.full_messages.join(', ') unless @comparative.save
+    end
+
+    max = rand(1..20)
+    max.times do |i|
+      @feature = Feature.new(name: 'Feature' + Faker::Lorem.words(rand(1..2)).join(' '), descr: Faker::Lorem.word, highlighted: (rand(2) == 1))
+      @feature.specification = specification
+      puts @feature.errors.full_messages.join(', ') unless @feature.save
+
+      specification.comparatives.each do |comparative|
+        @compared_feature = ComparedFeature.new(descr: Faker::Lorem.word)
+        @compared_feature.feature = @feature
+        @compared_feature.comparative = comparative
+        puts @compared_feature.errors.full_messages.join(', ') unless @compared_feature.save
+      end
+    end
+  end
+
+end

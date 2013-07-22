@@ -66,3 +66,9 @@ CarModel.all.each do |car_model|
     puts @car.errors.full_messages.join(', ') unless @car.save
   end
 end
+
+SpecificationType.destroy_all
+["Technical details", "Equipment", "Safety", "Lines", "Price"].each do |name|
+  @specification_type = SpecificationType.new(name: name)
+  puts @specification_type.errors.full_messages.join(', ') unless @specification_type.save
+end

@@ -72,3 +72,14 @@ SpecificationType.destroy_all
   @specification_type = SpecificationType.new(name: name)
   puts @specification_type.errors.full_messages.join(', ') unless @specification_type.save
 end
+
+Specification.destroy_all
+specification_types = SpecificationType.all
+Car.all.each do |car|
+  specification_types.all.each do |specification_type|
+    @specification = Specification.new(descr: Faker::Lorem.paragraph)
+    @specification.specification_type = specification_type
+    @specification.car = car
+    puts @specification.errors.full_messages.join(', ') unless @specification.save
+  end
+end

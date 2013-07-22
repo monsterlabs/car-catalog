@@ -15,8 +15,8 @@ Offer.destroy_all
   @offer.validUntil = Date.today + i.month
   @offer.enabled = true
   @offer.url =  Faker::Internet.http_url
-  @offer.image = File.open("#{Rails.root.to_s}/spec/factories/images/bmw_offer_test_#{i}.jpg")
-  @offer.largeImage = File.open("#{Rails.root.to_s}/spec/factories/images/bmw_offer_test_#{i}_large.jpg")
+  @offer.image = File.open("#{Rails.root.to_s}/spec/factories/images/offers/bmw_offer_test_#{i}.jpg")
+  @offer.largeImage = File.open("#{Rails.root.to_s}/spec/factories/images/offers/bmw_offer_test_#{i}_large.jpg")
   unless @offer.valid?
     puts @offer.errors.full_messages.join(", ")
   else
@@ -55,3 +55,14 @@ Serie.all.each do |serie|
   end
 end
 
+
+Car.destroy_all
+images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
+CarModel.all.each do |car_model|
+  rand(1..5).times do
+    @car = Car.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, highlights: Faker::Lorem.paragraphs(rand(1..3)).join("\n"), enabled: true, year:2013)
+    @car.car_model = car_model
+    @car.image = File.open(images[rand(images.size - 1)])
+    puts @car.errors.full_messages.join(', ') unless @car.save
+  end
+end

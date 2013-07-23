@@ -40,7 +40,8 @@ end
 
 Serie.destroy_all
 @brand = Brand.where(name: 'BMW').first
-["Serie 1", "Serie 3", "Serie 4", "Serie 5", "Serie 6", "Serie 7", "Serie X", "Serie Z4", "Serie M"].each do |name|
+@series = ["Serie 1", "Serie 3", "Serie 4", "Serie 5", "Serie 6", "Serie 7", "Serie X", "Serie Z4", "Serie M"]
+@series.each do |name|
   @serie = Serie.new(name: name, enabled: true)
   @serie.brand = @brand
   puts @serie.errors.full_messages.join(', ') unless @serie.save
@@ -57,12 +58,12 @@ end
 
 
 Car.destroy_all
-images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
+@images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
 CarLine.all.each do |car_line|
   rand(1..5).times do
     @car = Car.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, highlights: Faker::Lorem.paragraphs(rand(1..3)).join("\n"), enabled: true, year:2013)
     @car.car_line = car_line
-    @car.image = File.open(images.sample)
+    @car.image = File.open(@images.sample)
     puts @car.errors.full_messages.join(', ') unless @car.save
   end
 end
@@ -125,4 +126,17 @@ Car.all.each do |car|
     end
   end
 
+end
+
+rand(5..10).times do
+  @car_file = CarFile.new
+  @car_file.image = File.open(@images.sample)
+  @car_file.xls = File.open("#{Rails.root.to_s}/spec/factories/bmw-template.xlsx")
+  @car_file.serie = @series.sample
+  @car_file.year = 2013
+  @car_file.line = CarLine.all.sample.name
+  @car_file.model = Faker::Product.model + ' ' + Faker::Lorem.word
+  @car_file.imported = (rand(2) == 1)
+  @car_file.xls_errors = Faker::Lorem.paragraphs(3).join("\n") unless @car_file.imported?
+  puts @car_file.errors.full_messages.join(', ') unless @car_file.save
 end

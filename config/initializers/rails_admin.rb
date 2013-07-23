@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Offer', 'User']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Offer', 'Brand', 'Serie', 'CarModel', 'Car', 'SpecificationType']
+  config.included_models = ['Offer', 'Brand', 'Serie', 'CarLine', 'Car', 'SpecificationType']
 
   # Each model configuration can alternatively:
   #   - stay here in a `config.model 'ModelName' do ... end` block
@@ -106,11 +106,11 @@ RailsAdmin.config do |config|
       field :name
       field :brand
       field :enabled
-      field :car_models
+      field :car_lines
     end
   end
 
-  config.model 'CarModel' do
+  config.model 'CarLine' do
     list do
       field :name
       field :serie
@@ -131,7 +131,7 @@ RailsAdmin.config do |config|
         filterable false
       end
       field :year
-      field :car_model
+      field :car_line
       field :image, :carrierwave do
         filterable false
       end
@@ -142,7 +142,7 @@ RailsAdmin.config do |config|
       field :modelName
       field :year
       field :highlights
-      field :car_model
+      field :car_line
       field :image
       field :enabled
     end
@@ -151,7 +151,7 @@ RailsAdmin.config do |config|
       field :modelName
       field :year
       field :highlights
-      field :car_model
+      field :car_line
       field :image
       field :enabled
     end

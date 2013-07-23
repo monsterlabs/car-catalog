@@ -23,14 +23,14 @@ class InitialSchema < ActiveRecord::Migration
 
   add_index "brands", ["name"], name: "brands_name_index", using: :btree
 
-  create_table "carmodels", force: true do |t|
+  create_table "carlines", force: true do |t|
     t.boolean "enabled",  default: true
     t.string  "name"
     t.integer "serie_id"
   end
 
-  add_index "carmodels", ["name"], name: "carmodels_name_index", using: :btree
-  add_index "carmodels", ["serie_id"], name: "carmodels_serie_id_index", using: :btree
+  add_index "carlines", ["name"], name: "carlines_name_index", using: :btree
+  add_index "carlines", ["serie_id"], name: "carlines_serie_id_index", using: :btree
 
   create_table "cars", force: true do |t|
     t.boolean "enabled",     default: true
@@ -39,10 +39,10 @@ class InitialSchema < ActiveRecord::Migration
     t.string  "modelName",                  null: false
     t.integer "orderKey",    default: 0
     t.integer "year",        default: 0,    null: false
-    t.integer "carModel_id"
+    t.integer "carLine_id"
   end
 
-  add_index "cars", ["carModel_id"], name: "cars_carModel_id_index", using: :btree
+  add_index "cars", ["carLine_id"], name: "cars_carLine_id_index", using: :btree
   add_index "cars", ["highlights"], name: "cars_highlights_index", using: :btree
   add_index "cars", ["modelName"], name: "cars_modelName_index", using: :btree
   add_index "cars", ["orderKey"], name: "cars_orderKey_index", using: :btree

@@ -154,6 +154,7 @@ RailsAdmin.config do |config|
       field :car_line
       field :image
       field :enabled
+      field :car_file
     end
 
   end
@@ -187,6 +188,7 @@ RailsAdmin.config do |config|
       field :xls, :carrierwave
       field :image, :carrierwave
       field :xls_errors
+      field :car
     end
   end
 

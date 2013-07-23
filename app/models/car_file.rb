@@ -4,4 +4,8 @@ class CarFile < ActiveRecord::Base
   has_one :car, class_name: "Car", inverse_of: :car_file
   mount_uploader :image, ImageUploader
   mount_uploader :xls, DocumentUploader
+
+  def to_s
+    [serie, model, line, year].join(' ')
+  end
 end

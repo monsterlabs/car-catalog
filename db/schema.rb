@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723142739) do
+ActiveRecord::Schema.define(version: 20130723154239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20130723142739) do
     t.string   "serie"
     t.string   "line"
     t.string   "model"
-    t.string   "year"
+    t.integer  "year"
     t.string   "xls"
     t.string   "image"
-    t.boolean  "imported"
+    t.text     "xls_errors"
+    t.boolean  "imported",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,13 +46,14 @@ ActiveRecord::Schema.define(version: 20130723142739) do
   add_index "carlines", ["serie_id"], name: "carlines_serie_id_index", using: :btree
 
   create_table "cars", force: true do |t|
-    t.boolean "enabled",    default: true
-    t.text    "highlights",                null: false
+    t.boolean "enabled",     default: true
+    t.text    "highlights",                 null: false
     t.string  "image"
-    t.string  "modelName",                 null: false
-    t.integer "orderKey",   default: 0
-    t.integer "year",       default: 0,    null: false
+    t.string  "modelName",                  null: false
+    t.integer "orderKey",    default: 0
+    t.integer "year",        default: 0,    null: false
     t.integer "carLine_id"
+    t.integer "car_file_id"
   end
 
   add_index "cars", ["carLine_id"], name: "cars_carLine_id_index", using: :btree

@@ -14,7 +14,7 @@ module CarCatalog
         @record.update_attributes(xls_errors: "", imported: true)
         true
       else
-        @record.update_attributes(xls_errors: @template.errors, imported: false)
+        @record.update_attributes(xls_errors: @template.errors.join("\n"), imported: false)
         false
       end
     end

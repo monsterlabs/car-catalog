@@ -1,0 +1,68 @@
+es:
+  activerecord:
+    models:
+      brand:
+        one: Fabricante
+        other: Fabricantes
+      serie:
+        one: Serie
+        other: Series
+      car_line:
+        one: Línea
+        other: Líneas
+      car:
+        one: Auto
+        other: Autos
+      car_file:
+        one: Archivo de auto
+        other: Archivos de autos
+      specification_type:
+        one: Tipo de especificación
+        other: Tipos de especificación
+      offer:
+        one: Promoción
+        other: Promociones
+
+    attributes:
+      brand:
+        name: Nombre
+        series: series
+      serie:
+        name: Nombre
+        enabled: Activado
+        brand: Fabricante
+        car_lines: Líneas
+      car_line:
+        name: Nombre
+        enabled: Activado
+        serie: Serie
+      car:
+        modelName: Modelo
+        modelname: Modelo
+        year: Año
+        highlights: Texto de portada
+        image: Imagen de portada
+        car_line: Línea
+        enabled: Activado
+      car_file:
+        model: Modelo
+        line: Línea
+        serie: Serie
+        year: Año
+        imported: Información importada
+        image: Imagen de portada
+        xls: Plantilla en Excel
+        car: Auto
+        xls_errors: Errores en la plantilla de excel
+      specification_type:
+        name: Tipo de especificación
+      offer:
+        title: Título
+        body: Descripción
+        validuntil: Fecha de expiración
+        validUntil: Fecha de expiración
+        enabled: Activada
+        url: Página de la promoción
+        image: Icono
+        largeImage: Imagen
+

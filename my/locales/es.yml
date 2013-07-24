@@ -22,6 +22,9 @@ es:
       offer:
         one: Promoción
         other: Promociones
+      user:
+        one: Usuario
+        other: Usuarios
 
     attributes:
       brand:
@@ -65,4 +68,11 @@ es:
         url: Página de la promoción
         image: Icono
         largeImage: Imagen
-
+      user:
+        email: Correo electrónico
+        password: Contraseña
+        remember_me: Recordar contraseña
+  devise:
+    sessions:
+      new:
+        sign_in: Ingresar

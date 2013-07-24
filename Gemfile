@@ -11,6 +11,9 @@ gem "rails_admin", "~> 0.5.0"
 gem "turbolinks", "~> 1.3.0"
 gem "active_model_serializers", "~> 0.8.1"
 gem "roo", "~> 1.11.2"
+gem "rails-i18n", "~> 0.7.4"
+gem "rails_admin-i18n", "~> 0.0.9"
+gem "devise-i18n", "~> 0.8.6"
 
 group :test do
   gem "rspec-rails", "~> 2.14.0"

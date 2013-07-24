@@ -11,15 +11,21 @@ module CarCatalog
         find_or_create_car
         find_or_create_compared_cars
         create_specification_and_features
-        @record.update_attributes(xls_errors: "", imported: true)
+        import_car_file_attributes({xls_errors: "", imported: true})
         true
       else
-        @record.update_attributes(xls_errors: @template.errors.join("\n"), imported: false)
+        import_car_file_attributes({xls_errors: @template.errors.join("\n"), imported: false})
         false
       end
     end
 
     private
+
+    def import_car_file_attributes(attr)
+      h = {serie: @template.serie_name, model: @template.car_modelName, year: @template.car_year, line: @template.car_line_name}
+      @record.update_attributes(h.merge(attr))
+    end
+
     def find_or_create_car
         @bmw_brand = Brand.where(name: "BMW").first_or_create
         @serie = Serie.where(name: @template.serie_name, brand_id: @bmw_brand.id).first_or_create

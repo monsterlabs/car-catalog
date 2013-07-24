@@ -46,6 +46,7 @@ module CarCatalog
     end
 
     def features
+      max_columns = 5 + compared_cars.size
       specification_types.each do |spec_type|
         puts spec_type
         @features = []
@@ -53,7 +54,8 @@ module CarCatalog
         (9..@s.last_row).collect do |row|
           specification_type = @s.cell(row, 1).to_s.strip
           if active_section == true
-            @features.push({highlighted: @s.cell(row, 2), name: @s.cell(row, 3), descr: @s.cell(row,4) })
+            compared_features = (5..max_columns).collect { |col| @s.cell(row, col) }
+            @features.push({highlighted: @s.cell(row, 2), name: @s.cell(row, 3), descr: @s.cell(row,4), compared_features: compared_features })
           end
 
           if !specification_type.empty? and specification_type == spec_type

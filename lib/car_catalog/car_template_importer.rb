@@ -11,7 +11,7 @@ module CarCatalog
         find_or_create_car
         find_or_create_compared_cars
         create_specification_and_features
-        @record.update_attribute(:imported, true)
+        @record.update_attributes(xls_errors: "", imported: true)
         true
       else
         @record.update_attributes(xls_errors: @template.errors, imported: false)

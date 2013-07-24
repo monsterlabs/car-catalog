@@ -6,6 +6,6 @@ class CarFile < ActiveRecord::Base
   mount_uploader :xls, DocumentUploader
 
   def to_s
-    [serie, model, line, year].join(' ')
+    [serie, line, model, year].join(' ')
   end
 end

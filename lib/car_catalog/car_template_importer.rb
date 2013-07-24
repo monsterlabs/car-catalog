@@ -1,4 +1,4 @@
-require 'car_template_reader'
+require File.join(Rails.root.to_s, 'lib/car_catalog/car_template_reader')
 module CarCatalog
   class CarTemplateImporter
     def initialize(record)
@@ -37,6 +37,7 @@ module CarCatalog
     end
 
     def create_specification_and_features
+      @car.specifications.destroy_all
       @template.specification_and_features.each do |specification|
         @specification_type = SpecificationType.where(name: specification[:specification_type_name]).first_or_create
         @specification = Specification.where(car_id: @car.id, specificationType_id: @specification_type.id, descr: ".").first_or_create

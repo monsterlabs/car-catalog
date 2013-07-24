@@ -73,8 +73,16 @@ RailsAdmin.config do |config|
       field :body
       field :validUntil
       field :url
-      field :image
-      field :largeImage
+
+      field :image do
+        help 'Requerido y sin bordes - Tamaño: 237x227, Formato: jpg, jpeg, gif o png'
+      end
+
+      field :largeImage do
+        help 'Requerido y sin bordes - Tamaño: 758x320, Formato: jpg, jpeg, gif o png'
+
+      end
+
       field :enabled
     end
 
@@ -134,6 +142,7 @@ RailsAdmin.config do |config|
       field :car_line
       field :image, :carrierwave do
         filterable false
+        help 'Requerido y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
       end
       field :enabled
     end
@@ -176,7 +185,9 @@ RailsAdmin.config do |config|
 
     edit do
       field :xls, :carrierwave
-      field :image, :carrierwave
+      field :image, :carrierwave do
+        help 'Requerido y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
+      end
     end
 
     show do

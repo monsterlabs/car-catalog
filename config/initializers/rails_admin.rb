@@ -75,11 +75,11 @@ RailsAdmin.config do |config|
       field :url
 
       field :image do
-        help 'Requerido y sin bordes - Tamaño: 237x227, Formato: jpg, jpeg, gif o png'
+        help 'Imagen requerida y sin bordes - Tamaño: 237x227, Formato: jpg, jpeg, gif o png'
       end
 
       field :largeImage do
-        help 'Requerido y sin bordes - Tamaño: 758x320, Formato: jpg, jpeg, gif o png'
+        help 'Imagen requerida y sin bordes - Tamaño: 758x320, Formato: jpg, jpeg, gif o png'
 
       end
 
@@ -142,7 +142,6 @@ RailsAdmin.config do |config|
       field :car_line
       field :image, :carrierwave do
         filterable false
-        help 'Requerido y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
       end
       field :enabled
     end
@@ -152,7 +151,9 @@ RailsAdmin.config do |config|
       field :year
       field :highlights
       field :car_line
-      field :image
+      field :image do
+        help 'Imagen requerida y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
+      end
       field :enabled
     end
 
@@ -184,9 +185,12 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :xls, :carrierwave
+      field :xls, :carrierwave do
+        help "Plantilla en excel con formato xlsx"
+      end
+
       field :image, :carrierwave do
-        help 'Requerido y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
+        help 'Imagen requerida y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
       end
     end
 

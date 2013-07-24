@@ -128,20 +128,20 @@ Car.all.each do |car|
 
 end
 
-rand(5..10).times do
-  @car_file = CarFile.new
-  @car_file.image = File.open(@images.sample)
-  @car_file.xls = File.open("#{Rails.root.to_s}/spec/factories/bmw-template.xlsx")
-  @car_file.serie = @series.sample
-  @car_file.year = 2013
-  @car_file.line = CarLine.all.sample.name
-  @car_file.model = Faker::Product.model + ' ' + Faker::Lorem.word
-  @car_file.imported = (rand(2) == 1)
-  @car_file.xls_errors = Faker::Lorem.paragraphs(3).join("\n") unless @car_file.imported?
-  puts @car_file.errors.full_messages.join(', ') unless @car_file.save
-  if @car_file.imported?
-    @car = Car.all.sample
-    @car.car_file = @car_file
-    @car.save
-  end
-end
+#rand(5..10).times do
+#  @car_file = CarFile.new
+#  @car_file.image = File.open(@images.sample)
+#  @car_file.xls = File.open("#{Rails.root.to_s}/spec/factories/bmw-template.xlsx")
+#  @car_file.serie = @series.sample
+#  @car_file.year = 2013
+#  @car_file.line = CarLine.all.sample.name
+#  @car_file.model = Faker::Product.model + ' ' + Faker::Lorem.word
+#  @car_file.imported = (rand(2) == 1)
+#  @car_file.xls_errors = Faker::Lorem.paragraphs(3).join("\n") unless @car_file.imported?
+#  puts @car_file.errors.full_messages.join(', ') unless @car_file.save
+#  if @car_file.imported?
+#    @car = Car.all.sample
+#    @car.car_file = @car_file
+#    @car.save
+#  end
+#end

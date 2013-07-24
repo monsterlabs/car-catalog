@@ -9,6 +9,6 @@ class Car < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def to_s
-    [modelName, year].join(' - ')
+    [car_line.serie.name, car_line.name, modelName, year].join(' - ')
   end
 end

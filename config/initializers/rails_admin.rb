@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Offer', 'User']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Offer', 'Brand', 'Serie', 'CarLine', 'Car', 'SpecificationType', 'CarFile']
+  config.included_models = ['Offer', 'Brand', 'Serie', 'Line', 'Car', 'SpecificationType', 'CarFile']
 
   # Each model configuration can alternatively:
   #   - stay here in a `config.model 'ModelName' do ... end` block
@@ -114,11 +114,11 @@ RailsAdmin.config do |config|
       field :name
       field :brand
       field :enabled
-      field :car_lines
+      field :lines
     end
   end
 
-  config.model 'CarLine' do
+  config.model 'Line' do
     list do
       field :name
       field :serie
@@ -139,7 +139,7 @@ RailsAdmin.config do |config|
         filterable false
       end
       field :year
-      field :car_line
+      field :line
       field :image, :carrierwave do
         filterable false
       end
@@ -150,7 +150,7 @@ RailsAdmin.config do |config|
       field :modelName
       field :year
       field :highlights
-      field :car_line
+      field :line
       field :image do
         help 'Imagen requerida y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
       end
@@ -161,7 +161,7 @@ RailsAdmin.config do |config|
       field :modelName
       field :year
       field :highlights
-      field :car_line
+      field :line
       field :image
       field :enabled
       field :car_file

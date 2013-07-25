@@ -1,4 +1,4 @@
-class CarLineSerializer < ActiveModel::Serializer
+class LineSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
              :serie_id,

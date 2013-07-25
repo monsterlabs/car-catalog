@@ -22,15 +22,15 @@ module CarCatalog
     private
 
     def import_car_file_attributes(attr)
-      h = {serie: @template.serie_name, model: @template.car_modelName, year: @template.car_year, line: @template.car_line_name}
+      h = {serie: @template.serie_name, model: @template.car_modelName, year: @template.car_year, line: @template.line_name}
       @record.update_attributes(h.merge(attr))
     end
 
     def find_or_create_car
         @bmw_brand = Brand.where(name: "BMW").first_or_create
         @serie = Serie.where(name: @template.serie_name, brand_id: @bmw_brand.id).first_or_create
-        @car_line = CarLine.where(name: @template.car_line_name, serie_id: @serie.id).first_or_create
-        @car = Car.where(modelName: @template.car_modelName, year: @template.car_year, carLine_id: @car_line.id).first_or_create
+        @line = Line.where(name: @template.line_name, serie_id: @serie.id).first_or_create
+        @car = Car.where(modelName: @template.car_modelName, year: @template.car_year, line_id: @line.id).first_or_create
         @car.update_attribute(:highlights, @template.car_highlights)
         @car.update_attribute(:image, File.open(@record.image.file.path))
     end

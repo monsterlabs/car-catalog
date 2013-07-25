@@ -7,7 +7,7 @@ es:
       serie:
         one: Serie
         other: Series
-      car_line:
+      line:
         one: Línea
         other: Líneas
       car:
@@ -34,8 +34,8 @@ es:
         name: Nombre
         enabled: Activado
         brand: Fabricante
-        car_lines: Líneas
-      car_line:
+        lines: Líneas
+      line:
         name: Nombre
         enabled: Activado
         serie: Serie
@@ -45,7 +45,7 @@ es:
         year: Año
         highlights: Texto de portada
         image: Imagen de portada
-        car_line: Línea
+        line: Línea
         enabled: Activado
       car_file:
         model: Modelo

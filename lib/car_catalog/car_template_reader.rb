@@ -27,7 +27,7 @@ module CarCatalog
       @s.cell('B', 5).to_s
     end
 
-    def car_line_name
+    def line_name
       @s.cell('B', 4).to_s
     end
 
@@ -84,7 +84,7 @@ module CarCatalog
       @errors.push("Debe incluir el año del auto") if car_year == 0
       @errors.push("Debe incluir el texto de la portada del auto") if car_highlights.empty?
       @errors.push("Debe incluir el nombre de la serie del auto")  if serie_name.empty?
-      @errors.push("Debe incluir el nombre de la línea del auto")  if car_line_name.empty?
+      @errors.push("Debe incluir el nombre de la línea del auto")  if line_name.empty?
     end
 
     def validate_compared_cars
@@ -104,7 +104,7 @@ module CarCatalog
     def debug
       puts "=" * 80
       puts "Serie: #{serie_name}"
-      puts "Car line: #{car_line_name}"
+      puts "Car line: #{line_name}"
       puts "Car model: #{car_modelName}"
       puts "Car year: #{car_year}"
       puts "Car highlights:\n#{car_highlights}"

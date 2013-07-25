@@ -47,22 +47,22 @@ Serie.destroy_all
   puts @serie.errors.full_messages.join(', ') unless @serie.save
 end
 
-CarLine.destroy_all
+Line.destroy_all
 Serie.all.each do |serie|
   rand(1..8).times do
-    @car_line = CarLine.new(name: Faker::Product.model + ' ' + Faker::Lorem.words(rand(1..2)).join(' '), enabled: true)
-    @car_line.serie = serie
-    puts @car_line.errors.full_messages.join(', ') unless @car_line.save
+    @line = Line.new(name: Faker::Product.model + ' ' + Faker::Lorem.words(rand(1..2)).join(' '), enabled: true)
+    @line.serie = serie
+    puts @line.errors.full_messages.join(', ') unless @line.save
   end
 end
 
 
 Car.destroy_all
 @images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
-CarLine.all.each do |car_line|
+Line.all.each do |line|
   rand(1..5).times do
     @car = Car.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, highlights: Faker::Lorem.paragraphs(rand(1..3)).join("\n"), enabled: true, year:2013)
-    @car.car_line = car_line
+    @car.line = line
     @car.image = File.open(@images.sample)
     puts @car.errors.full_messages.join(', ') unless @car.save
   end

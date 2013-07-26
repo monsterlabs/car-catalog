@@ -57,6 +57,7 @@ es:
         xls: Plantilla en Excel
         car: Auto
         xls_errors: Errores en la plantilla de excel
+        created_at: Fecha de registro
       specification_type:
         name: Tipo de especificación
       offer:

@@ -6,6 +6,7 @@ CarCatalog::Application.routes.draw do
     namespace :v1 do
       resources :offers, :only => [:index, :show]
       resources :brands, :only => [:index, :show]
+      resources :specification_types, :only => [:index, :show]
       resources :cars, :only => [:index, :show]
       concern :carable do
         resources :cars, :only => [:index, :show]

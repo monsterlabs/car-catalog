@@ -78,6 +78,9 @@ GEM
       tilt
     highline (1.6.19)
     hike (1.2.3)
+    hpricot (0.8.6)
+    html2slim (0.0.3)
+      hpricot
     i18n (0.6.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -232,6 +235,7 @@ DEPENDENCIES
   email_spec (~> 1.4.0)
   factory_girl_rails (~> 4.2.1)
   ffaker (~> 1.16.2)
+  html2slim (~> 0.0.3)
   mini_magick (~> 3.6.0)
   pg (~> 0.15.1)
   rails (~> 4.0.0)

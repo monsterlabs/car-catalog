@@ -32,100 +32,101 @@ else
   puts @user.errors.full_messages.join(', ')
 end
 
-Brand.destroy_all
-["BMW", "Audi", "Volvo", "Mercedes Benz"].each do |name|
-  @brand = Brand.new(name: name)
-  puts @brand.errors.full_messages.join(', ') unless @brand.save
-end
-
-Serie.destroy_all
-@brand = Brand.where(name: 'BMW').first
-@series = ["Serie 1", "Serie 3", "Serie 4", "Serie 5", "Serie 6", "Serie 7", "Serie X", "Serie Z4", "Serie M"]
-@series.each do |name|
-  @serie = Serie.new(name: name, enabled: true)
-  @serie.brand = @brand
-  puts @serie.errors.full_messages.join(', ') unless @serie.save
-end
-
-Line.destroy_all
-Serie.all.each do |serie|
-  rand(1..8).times do
-    @line = Line.new(name: Faker::Product.model + ' ' + Faker::Lorem.words(rand(1..2)).join(' '), enabled: true)
-    @line.serie = serie
-    puts @line.errors.full_messages.join(', ') unless @line.save
+unless Rails.env.production?
+  Brand.destroy_all
+  ["BMW", "Audi", "Volvo", "Mercedes Benz"].each do |name|
+    @brand = Brand.new(name: name)
+    puts @brand.errors.full_messages.join(', ') unless @brand.save
   end
-end
 
-
-Car.destroy_all
-@images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
-Line.all.each do |line|
-  rand(1..5).times do
-    @car = Car.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, highlights: Faker::Lorem.paragraphs(rand(1..3)).join("\n"), enabled: true, year:2013)
-    @car.line = line
-    @car.image = File.open(@images.sample)
-    puts @car.errors.full_messages.join(', ') unless @car.save
+  Serie.destroy_all
+  @brand = Brand.where(name: 'BMW').first
+  @series = ["Serie 1", "Serie 3", "Serie 4", "Serie 5", "Serie 6", "Serie 7", "Serie X", "Serie Z4", "Serie M"]
+  @series.each do |name|
+    @serie = Serie.new(name: name, enabled: true)
+    @serie.brand = @brand
+    puts @serie.errors.full_messages.join(', ') unless @serie.save
   end
-end
 
-SpecificationType.destroy_all
-["Technical details", "Equipment", "Safety", "Lines", "Price"].each do |name|
-  @specification_type = SpecificationType.new(name: name)
-  puts @specification_type.errors.full_messages.join(', ') unless @specification_type.save
-end
-
-Specification.destroy_all
-specification_types = SpecificationType.all
-Car.all.each do |car|
-  specification_types.all.each do |specification_type|
-    @specification = Specification.new(descr: Faker::Lorem.paragraph)
-    @specification.specification_type = specification_type
-    @specification.car = car
-    puts @specification.errors.full_messages.join(', ') unless @specification.save
-  end
-end
-
-[ComparedFeature, Comparative, ComparedCar, Feature].each do |klass_name|
-  klass_name.destroy_all
-end
-@brands = Brand.where("name != 'BMW'").all
-Car.all.each do |car|
-
-  @compared_cars = []
-  rand(1..@brands.size).times do
-    @compared_car = ComparedCar.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, year: 2013)
-    @compared_car.brand = @brands.sample
-    if @compared_car.save
-      @compared_cars.push @compared_car
-    else
-      puts @compared_car.errors.full_messages.join(', ')
+  Line.destroy_all
+  Serie.all.each do |serie|
+    rand(1..8).times do
+      @line = Line.new(name: Faker::Product.model + ' ' + Faker::Lorem.words(rand(1..2)).join(' '), enabled: true)
+      @line.serie = serie
+      puts @line.errors.full_messages.join(', ') unless @line.save
     end
   end
 
-  car.specifications.each do |specification|
 
-    @compared_cars.each do |compared_car|
-      @comparative = Comparative.new
-      @comparative.specification = specification
-      @comparative.compared_car = compared_car
-      puts @comparative.errors.full_messages.join(', ') unless @comparative.save
+  Car.destroy_all
+  @images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
+  Line.all.each do |line|
+    rand(1..5).times do
+      @car = Car.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, highlights: Faker::Lorem.paragraphs(rand(1..3)).join("\n"), enabled: true, year:2013)
+      @car.line = line
+      @car.image = File.open(@images.sample)
+      puts @car.errors.full_messages.join(', ') unless @car.save
+    end
+  end
+
+  SpecificationType.destroy_all
+  ["Technical details", "Equipment", "Safety", "Lines", "Price"].each do |name|
+    @specification_type = SpecificationType.new(name: name)
+    puts @specification_type.errors.full_messages.join(', ') unless @specification_type.save
+  end
+
+  Specification.destroy_all
+  specification_types = SpecificationType.all
+  Car.all.each do |car|
+    specification_types.all.each do |specification_type|
+      @specification = Specification.new(descr: Faker::Lorem.paragraph)
+      @specification.specification_type = specification_type
+      @specification.car = car
+      puts @specification.errors.full_messages.join(', ') unless @specification.save
+    end
+  end
+
+  [ComparedFeature, Comparative, ComparedCar, Feature].each do |klass_name|
+    klass_name.destroy_all
+  end
+  @brands = Brand.where("name != 'BMW'").all
+  Car.all.each do |car|
+
+    @compared_cars = []
+    rand(1..@brands.size).times do
+      @compared_car = ComparedCar.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, year: 2013)
+      @compared_car.brand = @brands.sample
+      if @compared_car.save
+        @compared_cars.push @compared_car
+      else
+        puts @compared_car.errors.full_messages.join(', ')
+      end
     end
 
-    max = rand(1..20)
-    max.times do |i|
-      @feature = Feature.new(name: 'Feature' + Faker::Lorem.words(rand(1..2)).join(' '), descr: Faker::Lorem.word, highlighted: (rand(2) == 1))
-      @feature.specification = specification
-      puts @feature.errors.full_messages.join(', ') unless @feature.save
+    car.specifications.each do |specification|
 
-      specification.comparatives.each do |comparative|
-        @compared_feature = ComparedFeature.new(descr: Faker::Lorem.word)
-        @compared_feature.feature = @feature
-        @compared_feature.comparative = comparative
-        puts @compared_feature.errors.full_messages.join(', ') unless @compared_feature.save
+      @compared_cars.each do |compared_car|
+        @comparative = Comparative.new
+        @comparative.specification = specification
+        @comparative.compared_car = compared_car
+        puts @comparative.errors.full_messages.join(', ') unless @comparative.save
+      end
+
+      max = rand(1..20)
+      max.times do |i|
+        @feature = Feature.new(name: 'Feature' + Faker::Lorem.words(rand(1..2)).join(' '), descr: Faker::Lorem.word, highlighted: (rand(2) == 1))
+        @feature.specification = specification
+        puts @feature.errors.full_messages.join(', ') unless @feature.save
+
+        specification.comparatives.each do |comparative|
+          @compared_feature = ComparedFeature.new(descr: Faker::Lorem.word)
+          @compared_feature.feature = @feature
+          @compared_feature.comparative = comparative
+          puts @compared_feature.errors.full_messages.join(', ') unless @compared_feature.save
+        end
       end
     end
   end
-
 end
 
 #rand(5..10).times do

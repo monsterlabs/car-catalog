@@ -1,6 +1,9 @@
 class SerieSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
-             :brand_id,
+             :brand,
              :enabled
+  def brand
+    { id: object.brand_id }
+  end
 end

@@ -1,6 +1,9 @@
 class LineSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
-             :serie_id,
+             :serie,
              :enabled
+  def serie
+    { id: object.serie.id }
+  end
 end

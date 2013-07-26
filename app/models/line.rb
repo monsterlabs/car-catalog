@@ -7,6 +7,6 @@ class Line < ActiveRecord::Base
   has_many :cars, class_name: "Car", foreign_key: "line_id", inverse_of: :line, dependent: :destroy
 
   def active_model_serializer
-    CarLineSerializer
+    LineSerializer
   end
 end

@@ -32,4 +32,5 @@ end
 group :development, :production do
   gem "capistrano", "~> 2.15.5"
   gem "rvm-capistrano", "~> 1.4.1"
+  gem "html2slim", "~> 0.0.3"
 end

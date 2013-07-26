@@ -182,6 +182,7 @@ RailsAdmin.config do |config|
       field :year
       field :serie
       field :imported
+      field :created_at
     end
 
     edit do
@@ -204,6 +205,7 @@ RailsAdmin.config do |config|
       field :image, :carrierwave
       field :xls_errors
       field :car
+      field :created_at
     end
   end
 

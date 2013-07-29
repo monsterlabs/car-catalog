@@ -26,6 +26,7 @@ end
 
 User.destroy_all
 @user = User.new(:email => 'admin@bmwapps.mx', :password => 'qw1234..', :password_confirmation => 'qw1234..', :is_admin => true)
+# @user.avatar = File.open("#{Rails.root.to_s}/spec/factories/images/users/wildcard_avatar.png")
 if @user.valid?
   @user.save
 else

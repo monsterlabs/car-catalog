@@ -25,11 +25,15 @@ es:
       user:
         one: Usuario
         other: Usuarios
+      specification:
+        one: Especificación
+        other: Especificaciones
 
     attributes:
       brand:
         name: Nombre
         series: series
+        compared_cars: Autos comparados
       serie:
         name: Nombre
         enabled: Activado
@@ -39,6 +43,7 @@ es:
         name: Nombre
         enabled: Activado
         serie: Serie
+        cars: Autos
       car:
         modelName: Modelo
         modelname: Modelo
@@ -47,6 +52,7 @@ es:
         image: Imagen de portada
         line: Línea
         enabled: Activado
+        specifications: Especificaciones
       car_file:
         model: Modelo
         line: Línea
@@ -60,6 +66,7 @@ es:
         created_at: Fecha de registro
       specification_type:
         name: Tipo de especificación
+        specifications: Especificaciones
       offer:
         title: Título
         body: Descripción

@@ -25,3 +25,4 @@ spec/tmp/*
 rerun.txt
 pickle-email-*.html
 public/assets
+.DS_Store

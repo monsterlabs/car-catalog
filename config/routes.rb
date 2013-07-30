@@ -19,6 +19,11 @@ CarCatalog::Application.routes.draw do
         resources :lines, only: [:index, :show], concerns: :carable
       end
       resources :series, only: [:index, :show], concerns: :lineable
+
+      resources :compared_cars, only: [:index, :show]
+      get "/comparedcars", to: "compared_cars#index"
+      get "/comparedcars/:id", to: "compared_cars#show"
+
     end
   end
 end

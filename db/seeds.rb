@@ -1,3 +1,5 @@
+# encoding: utf-8
+#
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -71,7 +73,7 @@ unless Rails.env.production?
   end
 
   SpecificationType.destroy_all
-  ["Technical details", "Equipment", "Safety", "Lines", "Price"].each do |name|
+  ["Ficha técnica", "Equipamiento", "Seguridad", "Líneas", "Precio"].each do |name|
     @specification_type = SpecificationType.new(name: name)
     puts @specification_type.errors.full_messages.join(', ') unless @specification_type.save
   end

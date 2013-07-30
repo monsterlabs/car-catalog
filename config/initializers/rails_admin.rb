@@ -16,6 +16,7 @@ RailsAdmin.config do |config|
     show
     edit
     delete
+    bulk_delete
   end
 
   config.label_methods << :to_s
@@ -31,7 +32,6 @@ RailsAdmin.config do |config|
         filterable false
       end
       field :enabled
-
     end
 
     edit do

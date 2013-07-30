@@ -13,6 +13,8 @@ class CarSerializer < ActiveModel::Serializer
     :image,
     :imageUrl
 
+  has_many :specifications
+
   def image
     object.image.file.filename
   end

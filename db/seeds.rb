@@ -53,7 +53,8 @@ unless Rails.env.production?
 
   Line.destroy_all
   Serie.all.each do |serie|
-    rand(1..8).times do
+    max = 2
+    rand(1..max).times do
       @line = Line.new(name: Faker::Product.model + ' ' + Faker::Lorem.words(rand(1..2)).join(' '), enabled: true)
       @line.serie = serie
       puts @line.errors.full_messages.join(', ') unless @line.save
@@ -64,7 +65,8 @@ unless Rails.env.production?
   Car.destroy_all
   @images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
   Line.all.each do |line|
-    rand(1..5).times do
+    max = 2
+    rand(1..2).times do
       @car = Car.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, highlights: Faker::Lorem.paragraphs(rand(1..3)).join("\n"), enabled: true, year:2013)
       @car.line = line
       @car.image = File.open(@images.sample)
@@ -96,7 +98,8 @@ unless Rails.env.production?
   Car.all.each do |car|
 
     @compared_cars = []
-    rand(1..@brands.size).times do
+    max = 2 ||@brands.size
+    rand(1..max).times do
       @compared_car = ComparedCar.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, year: 2013)
       @compared_car.brand = @brands.sample
       if @compared_car.save
@@ -115,7 +118,7 @@ unless Rails.env.production?
         puts @comparative.errors.full_messages.join(', ') unless @comparative.save
       end
 
-      max = rand(1..20)
+      max = rand(1..2)
       max.times do |i|
         @feature = Feature.new(name: 'Feature' + Faker::Lorem.words(rand(1..2)).join(' '), descr: Faker::Lorem.word, highlighted: (rand(2) == 1))
         @feature.specification = specification

@@ -6,8 +6,8 @@ class ComparedCarSerializer < ActiveModel::Serializer
   attributes :id,
              :modelName,
              :year,
-             :image,
-             :imageUrl,
+             # :image,
+             # :imageUrl,
              :brand
 
   def image

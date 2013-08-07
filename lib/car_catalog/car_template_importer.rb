@@ -1,4 +1,5 @@
 require File.join(Rails.root.to_s, 'lib/car_catalog/car_template_reader')
+require 'pry'
 module CarCatalog
   class CarTemplateImporter
     def initialize(record)
@@ -47,8 +48,8 @@ module CarCatalog
       @template.specification_and_features.each do |specification|
         @specification_type = SpecificationType.where(name: specification[:specification_type_name]).first_or_create
         @specification = Specification.where(car_id: @car.id, specificationType_id: @specification_type.id, descr: ".").first_or_create
+        create_comparatives(@specification.id)
         specification[:features].each do |f|
-          create_comparatives(@specification.id)
           create_feature(f, @specification.id)
         end
       end
@@ -69,7 +70,7 @@ module CarCatalog
 
     def create_compared_features(compared_features, feature_id)
       @compared_cars.size.times do |i|
-        @compared_feature = ComparedFeature.create(descr: compared_features[i], comparative_id: @comparatives[i], feature_id: feature_id)
+        @compared_feature = ComparedFeature.create(descr: compared_features[i], comparative_id: @comparatives[i].id, feature_id: feature_id)
       end
     end
   end

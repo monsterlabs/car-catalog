@@ -14,8 +14,10 @@ class CarFile < ActiveRecord::Base
 
   def import_xls
     if self.new_record? or !self.imported?
-      @importer = CarCatalog::CarTemplateImporter.new(self)
-      @importer.import_and_save
+      self.transaction do
+        @importer = CarCatalog::CarTemplateImporter.new(self)
+        @importer.import_and_save
+      end
     end
   end
 end

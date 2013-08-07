@@ -1,5 +1,4 @@
 require File.join(Rails.root.to_s, 'lib/car_catalog/car_template_reader')
-require 'pry'
 module CarCatalog
   class CarTemplateImporter
     def initialize(record)

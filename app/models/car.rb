@@ -11,4 +11,9 @@ class Car < ActiveRecord::Base
   def to_s
     [line.serie.name, line.name, modelName, year].join(' - ')
   end
+
+  def active_model_serializer
+    CarSerializer
+  end
+
 end

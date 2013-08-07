@@ -9,6 +9,13 @@ CarCatalog::Application.routes.draw do
       resources :specification_types, only: [:index, :show]
       get "/specificationtypes", to: "specification_types#index"
       get "/specificationtypes/:id", to: "specification_types#show"
+
+      resources :specifications, only: [:index, :show]
+      resources :comparatives, only: [:index, :show]
+
+      resources :compared_features, only: [:index, :show]
+      get "/comparedfeatures", to: "compared_features#index"
+      get "/comparedfeatures/:id", to: "compared_features#show"
       resources :cars, only: [:index, :show]
       concern :carable do
         resources :cars, only: [:index, :show]

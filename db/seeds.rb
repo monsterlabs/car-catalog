@@ -75,7 +75,7 @@ unless Rails.env.production?
   end
 
   SpecificationType.destroy_all
-  ["Técnica", "Equipamiento", "Seguridad", "Líneas", "Precio"].each do |name|
+  ["Técnica", "Equipamiento", "Seguridad", "Opcionales", "Precio"].each do |name|
     @specification_type = SpecificationType.new(name: name)
     puts @specification_type.errors.full_messages.join(', ') unless @specification_type.save
   end

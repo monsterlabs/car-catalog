@@ -95,7 +95,7 @@ module CarCatalog
     end
 
     def validate_specifications
-      valid_specification_types = ['Técnica', 'Equipamiento', 'Seguridad', 'Precio', 'Líneas']
+      valid_specification_types = ['Técnica', 'Equipamiento', 'Seguridad', 'Precio', 'Opcionales']
       unless valid_specification_types == specification_types
         @errors.push("Debe incluir las características con los siguientes nombres de sección: #{valid_specification_types.join(', ')}")
       end

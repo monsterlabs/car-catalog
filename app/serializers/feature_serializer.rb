@@ -3,5 +3,10 @@ class FeatureSerializer < ActiveModel::Serializer
              :name,
              :descr,
              :additionalInfo,
-             :highlighted
+             :highlighted,
+             :specification
+
+  def specification
+    {id: object.specification_id }
+  end
 end

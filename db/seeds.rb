@@ -8,17 +8,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'ffaker'
-
+@offerImages = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/offers", "*[1-6].jpg"))
+@offerLargeImages = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/offers", "*large.jpg"))
 Offer.destroy_all
-(1..6).each do |i|
+(1..100).each do |i|
   @offer = Offer.new
   @offer.title = Faker::Lorem.sentence
   @offer.body = Faker::Lorem.paragraph
   @offer.validUntil = Date.today + i.month
   @offer.enabled = true
   @offer.url =  Faker::Internet.http_url
-  @offer.image = File.open("#{Rails.root.to_s}/spec/factories/images/offers/bmw_offer_test_#{i}.jpg")
-  @offer.largeImage = File.open("#{Rails.root.to_s}/spec/factories/images/offers/bmw_offer_test_#{i}_large.jpg")
+  @offer.image = File.open(@offerImages.sample)
+  @offer.largeImage = File.open(@offerLargeImages.sample)
   unless @offer.valid?
     puts @offer.errors.full_messages.join(", ")
   else
@@ -53,7 +54,7 @@ unless Rails.env.production?
 
   Line.destroy_all
   Serie.all.each do |serie|
-    max = 2
+    max = 5 
     rand(1..max).times do
       @line = Line.new(name: Faker::Product.model + ' ' + Faker::Lorem.words(rand(1..2)).join(' '), enabled: true)
       @line.serie = serie
@@ -65,8 +66,8 @@ unless Rails.env.production?
   Car.destroy_all
   @images = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/cars", "*.jpg"))
   Line.all.each do |line|
-    max = 2
-    rand(1..2).times do
+    max = 8
+    rand(1..max).times do
       @car = Car.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, highlights: Faker::Lorem.paragraphs(rand(1..3)).join("\n"), enabled: true, year:2013)
       @car.line = line
       @car.image = File.open(@images.sample)
@@ -118,7 +119,7 @@ unless Rails.env.production?
         puts @comparative.errors.full_messages.join(', ') unless @comparative.save
       end
 
-      max = rand(1..2)
+      max = rand(1..20)
       max.times do |i|
         @feature = Feature.new(name: 'Feature' + Faker::Lorem.words(rand(1..2)).join(' '), descr: Faker::Lorem.word, highlighted: (rand(2) == 1))
         @feature.specification = specification

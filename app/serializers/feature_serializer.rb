@@ -4,6 +4,7 @@ class FeatureSerializer < ActiveModel::Serializer
              :descr,
              :additionalInfo,
              :highlighted,
+             :sequence,
              :specification
 
   def specification

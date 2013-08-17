@@ -37,7 +37,9 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :body
-      field :validUntil
+      field :validUntil do 
+        date_format :default
+      end
       field :url
 
       field :image do

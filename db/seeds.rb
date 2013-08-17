@@ -8,24 +8,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'ffaker'
-@offerImages = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/offers", "*[1-6].jpg"))
-@offerLargeImages = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/offers", "*large.jpg"))
-Offer.destroy_all
-(1..20).each do |i|
-  @offer = Offer.new
-  @offer.title = Faker::Lorem.sentence
-  @offer.body = Faker::Lorem.paragraph
-  @offer.validUntil = Date.today + i.month
-  @offer.enabled = true
-  @offer.url =  Faker::Internet.http_url
-  @offer.image = File.open(@offerImages.sample)
-  @offer.largeImage = File.open(@offerLargeImages.sample)
-  unless @offer.valid?
-    puts @offer.errors.full_messages.join(", ")
-  else
-    @offer.save
-  end
-end
 
 User.destroy_all
 @user = User.new(:email => 'admin@bmwapps.mx', :password => 'qw1234..', :password_confirmation => 'qw1234..', :is_admin => true)
@@ -37,6 +19,26 @@ else
 end
 
 unless Rails.env.production?
+
+  @offerImages = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/offers", "*[1-6].jpg"))
+  @offerLargeImages = Dir.glob(File.join("#{Rails.root.to_s}/spec/factories/images/offers", "*large.jpg"))
+  Offer.destroy_all
+  (1..20).each do |i|
+    @offer = Offer.new
+    @offer.title = Faker::Lorem.sentence
+    @offer.body = Faker::Lorem.paragraph
+    @offer.validUntil = Date.today + i.month
+    @offer.enabled = true
+    @offer.url =  Faker::Internet.http_url
+    @offer.image = File.open(@offerImages.sample)
+    @offer.largeImage = File.open(@offerLargeImages.sample)
+    unless @offer.valid?
+      puts @offer.errors.full_messages.join(", ")
+    else
+      @offer.save
+    end
+  end
+
   Brand.destroy_all
   ["BMW", "Audi", "Volvo", "Mercedes Benz"].each do |name|
     @brand = Brand.new(name: name)

@@ -11,6 +11,6 @@ class OfferImageUploader < CarrierWave::Uploader::Base
   process :resize_to_fit => [237, 227]
 
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w(jpg)
   end
 end

@@ -41,11 +41,11 @@ RailsAdmin.config do |config|
       field :url
 
       field :image do
-        help 'Imagen requerida y sin bordes - Tamaño: 237x227, Formato: jpg, jpeg, gif o png'
+        help 'Imagen requerida y sin bordes - Tamaño: 237x227, Formato: JPG'
       end
 
       field :largeImage do
-        help 'Imagen requerida y sin bordes - Tamaño: 758x320, Formato: jpg, jpeg, gif o png'
+        help 'Imagen requerida y sin bordes - Tamaño: 758x320, Formato: JPG'
 
       end
 
@@ -118,7 +118,7 @@ RailsAdmin.config do |config|
       field :highlights
       field :line
       field :image do
-        help 'Imagen requerida y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
+        help 'Imagen requerida y sin bordes - Tamaño: 728x364, Formato: JPG'
       end
       field :enabled
     end
@@ -157,7 +157,7 @@ RailsAdmin.config do |config|
       end
 
       field :image, :carrierwave do
-        help 'Imagen requerida y sin bordes - Tamaño: 728x364, Formato: jpg, jpeg, gif o png'
+        help 'Imagen requerida y sin bordes - Tamaño: 728x364, Formato: JPG'
       end
     end
 

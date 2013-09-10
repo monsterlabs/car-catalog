@@ -20,8 +20,8 @@ es:
         one: Tipo de especificación
         other: Tipos de especificación
       offer:
-        one: Promoción
-        other: Promociones
+        one: Información BMW
+        other: Información BMW
       user:
         one: Usuario
         other: Usuarios
@@ -73,7 +73,7 @@ es:
         validuntil: Fecha de expiración
         validUntil: Fecha de expiración
         enabled: Activada
-        url: Página de la promoción
+        url: Página 
         image: Icono
         largeImage: Imagen
       user:

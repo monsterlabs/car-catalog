@@ -3,6 +3,7 @@ class ComparativeSerializer < ActiveModel::Serializer
              :comparedCar,
              :specification
 
+  has_many :compared_features
   def comparedCar
     { id: object.comparedCar_id }
   end

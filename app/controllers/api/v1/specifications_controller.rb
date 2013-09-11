@@ -3,14 +3,14 @@ class Api::V1::SpecificationsController < ApplicationController
     q = (params.has_key? :car_id) ? { car_id: params[:car_id] } : {}
     @specifications = Specification.where(q).all
     respond_to do |format|
-      format.json { render json: @specifications, :root => "specifications" }
+      format.json { render json: @specifications, :root => "specifications", :except => [:features, :comparatives] }
     end
   end
 
   def show
     @specification = Specification.find(params[:id])
     respond_to do |format|
-      format.json { render json: @specification_type , :root => "specification" }
+      format.json { render json: @specification , :root => "specification" }
     end
   end
 end

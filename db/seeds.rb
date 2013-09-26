@@ -101,7 +101,7 @@ unless Rails.env.production?
   Car.all.each do |car|
 
     @compared_cars = []
-    max = 2 ||@brands.size
+    max = 5 ||@brands.size
     rand(1..max).times do
       @compared_car = ComparedCar.new(modelName: Faker::Product.model + ' ' + Faker::Lorem.word, year: 2013)
       @compared_car.brand = @brands.sample

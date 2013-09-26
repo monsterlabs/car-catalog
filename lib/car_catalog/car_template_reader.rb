@@ -55,9 +55,12 @@ module CarCatalog
         active_section = false
         (9..@s.last_row).collect do |row|
           specification_type = @s.cell(row, 1).to_s.strip
-          @features.push feature_by_row(row) if active_section
-          active_section = true if !specification_type.empty? and specification_type == spec_type
+          if !specification_type.empty? and specification_type == spec_type
+            active_section = true
+            next
+          end
           active_section = false if !specification_type.empty? and specification_type != spec_type
+          @features.push feature_by_row(row) if active_section
         end
         {:specification_type_name => spec_type, :features => @features}
       end

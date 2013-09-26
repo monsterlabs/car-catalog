@@ -3,6 +3,10 @@ class SpecificationSerializer < ActiveModel::Serializer
              :car,
              :specificationType,
              :descr
+
+  has_many :features
+  has_many :comparatives
+
   def car
     { id: object.car_id }
   end

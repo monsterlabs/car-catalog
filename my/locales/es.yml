@@ -8,11 +8,11 @@ es:
         one: Serie
         other: Series
       line:
-        one: Línea
-        other: Líneas
+        one: Carrocería
+        other: Carrocería
       car:
-        one: Auto
-        other: Autos
+        one: Portada
+        other: Portada
       car_file:
         one: Archivo de auto
         other: Archivos de autos
@@ -38,7 +38,7 @@ es:
         name: Nombre
         enabled: Activado
         brand: Fabricante
-        lines: Líneas
+        lines: Carrocerías
       line:
         name: Nombre
         enabled: Activado
@@ -55,7 +55,7 @@ es:
         specifications: Especificaciones
       car_file:
         model: Modelo
-        line: Línea
+        line: Carrocería
         serie: Serie
         year: Año
         imported: Información importada

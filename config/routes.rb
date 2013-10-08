@@ -40,6 +40,8 @@ CarCatalog::Application.routes.draw do
       end
 
       resources :series, only: [:index, :show], concerns: :lineable
+
+      post 'push_notification_devices/', to: 'push_notification_devices#create', as: 'push_notification_devices'
     end
   end
 end

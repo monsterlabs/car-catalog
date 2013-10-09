@@ -1,5 +1,7 @@
 require File.join(Rails.root.to_s, 'lib/car_catalog/car_template_importer')
 class CarFile < ActiveRecord::Base
+  include Notificable
+
   validates :xls, :image, presence: true
   validates :imported, inclusion: { in: [true, false] }
   has_one :car, class_name: "Car", inverse_of: :car_file, dependent: :destroy

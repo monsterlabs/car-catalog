@@ -84,3 +84,6 @@ es:
     sessions:
       new:
         sign_in: Ingresar
+  notificable:
+    title: "La base de datos ha sido actualizada"
+    body: "Por favor abre la aplicación y recarga la información"

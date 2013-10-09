@@ -9,7 +9,8 @@ class PushNotification < ActiveRecord::Base
   after_create :push_device_notifications
 
   def to_s
-    [title, body, ::I18n.l(created_at, :format => :long)].join(". ")
+    # [title, body, ::I18n.l(created_at, :format => :long)].join(". ")
+    [title, body].join(". ")
   end
 
   private

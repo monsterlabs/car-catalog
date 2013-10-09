@@ -1,6 +1,6 @@
 require Rails.root.join('./lib/car_catalog/apn_client.rb').to_s
 class PushNotification < ActiveRecord::Base
-  validates :title, :body, :presence => true
+  validates :title, :body, :updated_section, :presence => true
 
   default_scope order("created_at ASC")
   scope :sent, where(:status => true)
@@ -16,7 +16,8 @@ class PushNotification < ActiveRecord::Base
   private
   def push_device_notifications
     PushNotificationDevice.all.each do |device|
-      @apn_client = CarCatalog::ApnClient.new(device.token, self.to_s, device.badge.to_i + 1)
+      device.update_attribute(:badge, device.badge+1)
+      @apn_client = CarCatalog::ApnClient.new(device, self.to_s, updated_section)
       @apn_client.push
     end
     update_attribute(:status,true)

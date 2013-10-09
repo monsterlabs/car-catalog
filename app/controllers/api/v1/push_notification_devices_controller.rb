@@ -9,6 +9,15 @@ class Api::V1::PushNotificationDevicesController < ApplicationController
     end
   end
 
+  def update
+    @push_notification_device = PushNotificationDevice.find(params[:id])
+    @push_notification_device.update_attributes device_params
+    respond_to do |format|
+      format.json { render json: @push_notification_device }
+    end
+
+  end
+
   private
   def device_params
     params.require(:push_notification_device).permit(:token, :timezone, :badge)

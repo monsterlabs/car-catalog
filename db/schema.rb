@@ -238,7 +238,8 @@ ActiveRecord::Schema.define(version: 20131009165437) do
   create_table "push_notifications", force: true do |t|
     t.string   "title"
     t.string   "body"
-    t.boolean  "status",     default: false
+    t.string   "updated_section"
+    t.boolean  "status",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,6 @@
 class Offer < ActiveRecord::Base
+  include Notificable
+
   validates :title, :body, :url, :validUntil, :image, :largeImage, presence: true
   validates :enabled, inclusion: { in: [true, false] }
 

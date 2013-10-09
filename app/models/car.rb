@@ -1,4 +1,6 @@
 class Car < ActiveRecord::Base
+  include Notificable
+
   validates :modelName, :highlights, :year, :image, :presence => true
   validates :enabled, inclusion: { in: [true, false] }
 

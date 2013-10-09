@@ -1,5 +1,7 @@
 class Line < ActiveRecord::Base
   self.table_name = "lines"
+  include Notificable
+
   validates :name, :presence => true
   validates :enabled, inclusion: { in: [true, false] }, :presence => true
 

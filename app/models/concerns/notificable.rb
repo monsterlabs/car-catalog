@@ -6,6 +6,6 @@ module Notificable
   end
 
   def enqueue_notification
-    PushNotification.create(title: ::I18n.t(".notificable.title"), body: ::I18n.t(".notificable.body"))
+    PushNotification.create(title: ::I18n.t(".notificable.title"), body: ::I18n.t(".notificable.body"), updated_section: self.class.name.downcase)
   end
 end

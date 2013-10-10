@@ -3,7 +3,7 @@ module CarCatalog
   class ApnClient
 
     def initialize(device, alert, updated_section)
-      @apn = Houston::Client.development
+      @apn = Houston::Client.send Rails.env
       @apn.certificate = File.read Rails.root.join("config/apple_push_notification_#{Rails.env.to_s}.pem").to_s
       @device = device
       @alert = alert

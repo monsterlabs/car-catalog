@@ -11,7 +11,7 @@ class Api::V1::PushNotificationDevicesController < ApplicationController
 
   def update
     @push_notification_device = PushNotificationDevice.find(params[:id])
-    @push_notification_device.update_attributes device_params
+    @push_notification_device.update_attributes(badge:0)
     respond_to do |format|
       format.json { render json: @push_notification_device }
     end

@@ -4,7 +4,7 @@ module CarCatalog
 
     def initialize(device, alert, updated_section)
       @apn = Houston::Client.development
-      @apn.certificate = File.read Rails.root.join("config/apple_push_notification.pem").to_s
+      @apn.certificate = File.read Rails.root.join("config/apple_push_notification_#{Rails.env.to_s}.pem").to_s
       @device = device
       @alert = alert
       @updated_section = updated_section

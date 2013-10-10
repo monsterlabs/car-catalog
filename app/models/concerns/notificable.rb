@@ -2,7 +2,13 @@ module Notificable
   extend ActiveSupport::Concern
 
   included do
-    after_commit :enqueue_notification
+
+    if self == CarFile or self  == Offer
+      after_commit :enqueue_notification
+    else
+      after_update :enqueue_notification
+    end
+
   end
 
   def enqueue_notification

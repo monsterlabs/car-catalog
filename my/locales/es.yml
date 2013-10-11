@@ -50,7 +50,7 @@ es:
         year: Año
         highlights: Texto de portada
         image: Imagen de portada
-        line: Línea
+        line: Carrocería
         enabled: Activado
         specifications: Especificaciones
       car_file:

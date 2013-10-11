@@ -10,9 +10,7 @@ module CarCatalog
     end
 
     def serie_name
-      name = @s.cell('B',3).to_s
-      name = "Serie #{name}" unless name =~ /^Serie/i or name.empty?
-      name
+      @s.cell('B',3).to_s
     end
 
     def car_modelName

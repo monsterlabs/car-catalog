@@ -133,6 +133,15 @@ RailsAdmin.config do |config|
       field :image
       field :enabled
       field :car_file
+
+      field :specifications do |record|
+        pretty_value do
+          bindings[:view].render :partial => 'rails_admin/main/specifications', :locals => { :field => self }
+        end
+        #def render
+        #  bindings[:view].render :partial => 'rails_admin/main/specifications'
+        #end
+      end
     end
 
   end

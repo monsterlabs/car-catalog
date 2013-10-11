@@ -10,7 +10,7 @@ class Feature < ActiveRecord::Base
   default_scope order("features.sequence ASC")
 
   def to_s
-    [name, additionalInfo, 'test'].compact.join("\n")
+    [name, additionalInfo].compact.join("\n")
   end
 
   private

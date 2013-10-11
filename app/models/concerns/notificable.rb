@@ -4,9 +4,9 @@ module Notificable
   included do
 
     if self == CarFile or self  == Offer
-      after_commit :enqueue_notification
+      after_commit :enqueue_notification, on: [:create, :update, :destroy]
     else
-      after_update :enqueue_notification
+      after_commit :enqueue_notification, on: [:update, :destroy]
     end
 
   end

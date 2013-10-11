@@ -10,8 +10,9 @@ class Feature < ActiveRecord::Base
   default_scope order("features.sequence ASC")
 
   def to_s
-    [name, additionalInfo].compact.join(" - ")
+    [name, additionalInfo, 'test'].compact.join("\n")
   end
+
   private
   def increment_sequence
     value = ActiveRecord::Migration::execute "SELECT nextval('features_sequence_seq')"

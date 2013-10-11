@@ -10,7 +10,7 @@
     %tbody
       - s.features.each do |f|
         %tr
-          %td{:style => "color: #{f.highlighted? ?  'blue' : 'black'}"}= f.to_s
+          %td{:style => "color: #{f.highlighted? ?  'blue' : 'black'}"}= RedCloth.new(f.to_s).to_html.html_safe
           %td= f.descr
           - f.compared_features.order("comparedfeatures.comparative_id ASC").each do |cf|
             %td= f.descr

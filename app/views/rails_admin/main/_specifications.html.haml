@@ -1,0 +1,17 @@
+- field.value.each do |s|
+  %h2= s.specification_type.name
+  %table{:class=>"table table-condensend table-striped"}
+    %thead
+      %tr
+        %th= s.specification_type.name
+        %th= s.car.modelName
+        - s.comparatives.order("comparatives.id ASC").each do |c|
+          %th= c.compared_car.modelName
+    %tbody
+      - s.features.each do |f|
+        %tr
+          %td{:style => "color: #{f.highlighted? ?  'blue' : 'black'}"}= f.to_s
+          %td= f.descr
+          - f.compared_features.order("comparedfeatures.comparative_id ASC").each do |cf|
+            %td= f.descr
+

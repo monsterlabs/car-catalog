@@ -11,7 +11,10 @@ class Line < ActiveRecord::Base
   before_destroy :destroy_cars
   
   def destroy_cars
-    Car.destroy_all "line_id = #{self.id}"
+    cars.each do |c|
+      c.destroy_specifications
+    end
+    cars.delete_all
   end
 
   def active_model_serializer

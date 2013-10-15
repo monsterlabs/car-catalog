@@ -8,7 +8,7 @@
         - s.comparatives.order("comparatives.id ASC").each do |c|
           %th= c.compared_car.modelName
     %tbody
-      - s.features.each do |f|
+      - s.features.order("features.sequence ASC").each do |f|
         %tr
           %td{:style => "color: #{f.highlighted? ?  'blue' : 'black'}"}= RedCloth.new(f.to_s).to_html.html_safe
           %td= f.descr

@@ -6,7 +6,7 @@ class Car < ActiveRecord::Base
 
   belongs_to :line, class_name: "Line", foreign_key: "line_id", inverse_of: :cars
   belongs_to :car_file, class_name: "CarFile", inverse_of: :car
-  has_many :specifications, class_name: "Specification", inverse_of: :car, dependent: :destroy
+  has_many :specifications, class_name: "Specification", inverse_of: :car, dependent: :delete_all
 
   mount_uploader :image, ImageUploader
 

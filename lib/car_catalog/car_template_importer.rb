@@ -23,7 +23,7 @@ module CarCatalog
 
     def import_car_file_attributes(attr)
       h = {serie: @template.serie_name, model: @template.car_modelName, year: @template.car_year, line: @template.line_name}
-      @record.update_attributes(h.merge(attr))
+      @record.update_columns(h.merge(attr))
     end
 
     def find_or_create_car
@@ -31,8 +31,7 @@ module CarCatalog
         @serie = Serie.where(name: @template.serie_name, brand_id: @bmw_brand.id).first_or_create
         @line = Line.where(name: @template.line_name, serie_id: @serie.id).first_or_create
         @car = Car.where(modelName: @template.car_modelName, year: @template.car_year, line_id: @line.id).first_or_create
-        @car.update_attribute(:highlights, @template.car_highlights)
-        @car.update_attribute(:image, File.open(@record.image.file.path))
+        @car.update_columns(:highlights, @template.car_highlights, :image, File.open(@record.image.file.path))
     end
 
     def find_or_create_compared_cars

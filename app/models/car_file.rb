@@ -4,7 +4,7 @@ class CarFile < ActiveRecord::Base
 
   validates :xls, :image, presence: true
   validates :imported, inclusion: { in: [true, false] }
-  has_one :car, class_name: "Car", inverse_of: :car_file, dependent: :destroy
+  has_one :car, class_name: "Car", inverse_of: :car_file, dependent: :delete
   mount_uploader :image, ImageUploader
   mount_uploader :xls, DocumentUploader
 

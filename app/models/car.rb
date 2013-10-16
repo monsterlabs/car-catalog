@@ -8,18 +8,18 @@ class Car < ActiveRecord::Base
   belongs_to :car_file, class_name: "CarFile", inverse_of: :car
   has_many :specifications, class_name: "Specification", inverse_of: :car
 
-  before_destroy :destroy_specifications
-  
-  def destroy_specifications
+  before_destroy :delete_specifications
+
+  def delete_specifications
     # Don't use the destroy method to avoid duplicated Push Notification
     specifications.each do |s|
-      s.features.delete_all
       s.comparatives.each do |c|
-        c.compared_features.delete_all
+        ComparedFeature.delete_all(comparative_id: c.id)
       end
-      s.comparatives.delete_all
+      Feature.delete_all(specification_id: s.id)
+      Comparative.delete_all(specification_id: s.id)
     end
-    specifications.delete_all
+    Specification.delete_all(car_id: self.id)
   end
 
 

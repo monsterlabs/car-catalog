@@ -6,13 +6,11 @@ class Serie < ActiveRecord::Base
   belongs_to :brand, inverse_of: :series
   has_many :lines, class_name: "Line", inverse_of: :serie
 
-  before_destroy :destroy_lines
+  before_destroy :delete_lines
 
-  def destroy_lines
-    lines.each do |l|
-      l.destroy_cars
-    end
-    lines.delete_all
+  def delete_lines
+    lines.collect(&:delete_cars)
+    Line.delete_all(serie_id: self.id)
   end
 
   def active_model_serializer
